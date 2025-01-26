@@ -6,97 +6,121 @@
     <meta name="description" content="Professional photography portfolio and services">
     <title>Flotography - Capturing Your Moments</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
         body {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            background-color: #E8E7AB;
+            background-color: #F7F7F7;
+            color: #333;
         }
 
         header {
-            background: #C30E59;
+            background: linear-gradient(90deg, #C30E59, #E82561);
             color: #fff;
-            padding: 1rem 0;
-            text-align: right;
-            padding-right: 2rem;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
         }
 
         nav {
             display: flex;
-            justify-content: center;
-            background: #E82561;
+            gap: 1.5rem;
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            padding: 1rem;
-            display: block;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
-            background: #C30E59;
+            color: #F2AE66;
         }
 
         .hero {
             background: url('your-image.jpg') no-repeat center center/cover;
             color: #fff;
-            height: 80vh;
+            height: 70vh;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 2rem;
+            box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
         }
 
         .hero h1 {
             font-size: 3rem;
             margin: 0;
+            font-weight: 700;
         }
 
         section {
-            padding: 2rem;
+            padding: 4rem 2rem;
             text-align: center;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #C30E59;
+            margin-bottom: 1rem;
         }
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
         }
 
         .gallery img {
             width: 100%;
             border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         footer {
-            background: #C30E59;
+            background: #333;
             color: #fff;
             text-align: center;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
         }
 
-        h1, h2 {
-            color: #F2AE66;
+        footer p {
+            margin: 0;
         }
 
         p {
-            color: #333;
+            font-size: 1rem;
+            margin: 0 0 1.5rem;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Florence Janine</h1>
-        <p>Capturing Your Moments with Perfection</p>
+        <h1>Flotography</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-    </nav>
 
     <div class="hero">
         <h1>Welcome to Flotography</h1>
@@ -118,8 +142,8 @@
 
     <section id="contact">
         <h2>Contact Me</h2>
-        <p>Email: fj.stik@hotmail.com</p>
-        <p>Instagram: @floorstikkelbroeck</p>
+        <p>Email: yourname@example.com</p>
+        <p>Phone: 123-456-7890</p>
     </section>
 
     <footer>
