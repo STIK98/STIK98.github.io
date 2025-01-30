@@ -18,7 +18,7 @@
         }
 
         header {
-            background: linear-gradient(90deg, #C30E59, #E82561);
+            background: linear-gradient(90deg, #F2AE66, #E82561);
             color: #fff;
             padding: 1.5rem 2rem;
             display: flex;
@@ -60,10 +60,7 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin: 0;
-            font-weight: 700;
-            color: #F2AE66;
+            color: #E8E7AB;
         }
 
         section {
@@ -71,21 +68,16 @@
             text-align: center;
         }
 
-        section h2 {
-            font-size: 2rem;
-            color: #C30E59;
-            margin-bottom: 1rem;
-        }
-
-        section p {
-            color: #E82561;
-        }
-
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 2rem 0;
+        }
+
+        .gallery figure {
+            position: relative;
+            text-align: center;
         }
 
         .gallery img {
@@ -100,20 +92,10 @@
             box-shadow: 0 6px 12px rgba(242, 174, 102, 0.8);
         }
 
-        footer {
-            background: linear-gradient(90deg, #F2AE66, #E82561);
-            color: #fff;
-            text-align: center;
-            padding: 1.5rem 0;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        p {
-            font-size: 1rem;
-            margin: 0 0 1.5rem;
+        .gallery figcaption {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: #C30E59;
         }
     </style>
 </head>
@@ -131,24 +113,22 @@
         <h1>Welcome to Flotography</h1>
     </div>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Welcome to Flotography! I specialize in capturing your most precious moments with creativity and precision.</p>
-    </section>
-
     <section id="portfolio">
         <h2>Portfolio</h2>
         <div class="gallery">
-            <img src="flotoshoot_large-38.jpg" alt="Photo 1">
-            <img src="photo2.jpg" alt="Photo 2">
-            <img src="flotoshoot-39.jpg" alt="Photo 3">
+            <figure>
+                <a href="style1.html"><img src="photo1.jpg" alt="Urban Photography"></a>
+                <figcaption>Urban Photography</figcaption>
+            </figure>
+            <figure>
+                <a href="style2.html"><img src="photo2.jpg" alt="Portrait Photography"></a>
+                <figcaption>Portrait Photography</figcaption>
+            </figure>
+            <figure>
+                <a href="style3.html"><img src="photo3.jpg" alt="Nature Photography"></a>
+                <figcaption>Nature Photography</figcaption>
+            </figure>
         </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: yourname@example.com</p>
-        <p>Insta: @floorstikkelbroeck</p>
     </section>
 
     <footer>
