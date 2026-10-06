@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* ========== BASICS ========== */
+
         body {
             font-family: 'Work Sans', sans-serif;
             margin: 0;
@@ -17,56 +19,145 @@
             color: #333;
         }
 
+        /* Images never get wider than the space they're in */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ========== HEADER ========== */
+
         header {
-            background: linear-gradient(90deg, #F2AE66, #E82561);
+            position: relative;
             color: #fff;
-            padding: 1.5rem 2rem;
+            padding: 2.5rem 2rem 7rem;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            gap: 3.5rem;
+            text-align: center;
+            background: linear-gradient(180deg, #E82561 0%, #F2AE66 45%, #E8E7AB 100%);
+        }
+
+        /* Grain texture that fades out with the gradient */
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.8;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            -webkit-mask-image: linear-gradient(180deg, black 50%, transparent 100%);
+            mask-image: linear-gradient(180deg, black 50%, transparent 100%);
+        }
+
+        /* Keep the title and menu above the grain */
+        header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* The menu sits above your name, so its dropdown can cover the name */
+        header nav {
+            z-index: 2;
         }
 
         header h1 {
             font-family: 'Libre Baskerville', serif;
-            font-size: 2.5rem;
+            /* Shrinks on small screens: never smaller than 2.2rem, never bigger than 4rem */
+            font-size: clamp(2.2rem, 8vw, 4rem);
             font-weight: 700;
             letter-spacing: 0.5px;
+            line-height: 1.2;
             margin: 0;
-            padding-right: 1rem; /* Optional: creates breathing room from the nav */
         }
+
+        /* ========== NAVIGATION (laptop) ========== */
 
         nav {
             display: flex;
-            gap: 1.5rem;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
         }
 
         nav a {
-            color: #F2AE66;
+            color: #fff;
             text-decoration: none;
             font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0.75rem;
             transition: color 0.3s ease;
         }
 
         nav a:hover {
-            color: #fff;
-        }
-
-        .hero {
-            background: url('your-image.jpg') no-repeat center center/cover;
-            color: #fff;
-            height: 40vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            box-shadow: inset 0 0 0 2000px rgba(232, 231, 171, 0.6);
-            color: #C30E59;
-        }
-
-        .hero h1 {
             color: #E8E7AB;
         }
+
+        nav a:focus-visible,
+        .nav-toggle:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* The hamburger button: hidden on laptops */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 44px;
+            height: 44px;
+            padding: 11px 8px;
+            box-sizing: border-box;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            display: block;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        /* ========== HERO (photo + quote) ========== */
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            min-height: 40vh;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-photo {
+            width: 240px;
+            height: 240px;
+            flex-shrink: 0;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 4px solid #F2AE66;
+        }
+
+        .hero-quote {
+            margin: 0;
+            color: #E82561;
+            font-size: 2.5rem;
+            line-height: 1.3;
+        }
+
+        /* ========== SECTIONS & GALLERY ========== */
 
         section {
             padding: 4rem 2rem;
@@ -75,7 +166,7 @@
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 2rem;
             padding: 2rem 0;
         }
@@ -83,6 +174,7 @@
         .gallery figure {
             position: relative;
             text-align: center;
+            margin: 0;
         }
 
         .gallery img {
@@ -103,88 +195,109 @@
             color: #C30E59;
         }
 
+        /* ========== FOOTER ========== */
+
         footer {
-            background: linear-gradient(90deg, #E82561, #F2AE66);
+            position: relative;
+            background: linear-gradient(0deg, #E82561 0%, #F2AE66 50%, #E8E7AB 100%);
             color: #fff;
             text-align: center;
-            padding: 1.5rem 0;
+            padding: 6rem 1rem 1.5rem;
         }
 
         footer p {
             margin: 0;
         }
+
+        /* ========== PHONES (screens 700px wide or smaller) ========== */
+
+        @media (max-width: 700px) {
+            header {
+                padding: 1.5rem 1.25rem 5rem;
+                gap: 1.5rem;
+            }
+
+            nav {
+                position: relative;
+            }
+
+            /* Show the hamburger */
+            .nav-toggle {
+                display: flex;
+            }
+
+            /* Turn the links into a dropdown, hidden until opened */
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                position: absolute;
+                top: calc(100% + 0.5rem);
+                left: 50%;
+                transform: translateX(-50%);
+                width: 200px;
+                background: #E82561;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            /* The JavaScript adds the class "open" when the hamburger is tapped */
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            /* Stack the photo above the quote */
+            .hero {
+                flex-direction: column;
+                gap: 1.5rem;
+                min-height: 0;
+                padding: 0 1.25rem 2rem;
+            }
+
+            .hero-photo {
+                width: 180px;
+                height: 180px;
+            }
+
+            .hero-quote {
+                font-size: 1.6rem;
+            }
+
+            section {
+                padding: 3rem 1.25rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Florence Janine    <em>photography</em></h1>
-        <nav>
-            <input type="checkbox" id="nav-toggle" style="display:none;">
-            <label for="nav-toggle" class="nav-icon">
+        <nav aria-label="Main menu">
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </label>
-            <div class="nav-links">
+            </button>
+            <div class="nav-links" id="nav-links">
                 <a href="#about">About</a>
                 <a href="#portfolio">Portfolio</a>
                 <a href="#contact">Contact</a>
             </div>
         </nav>
-        <style>
-            .nav-icon {
-                display: none;
-                flex-direction: column;
-                cursor: pointer;
-                width: 30px;
-                height: 25px;
-                justify-content: space-between;
-            }
-            .nav-icon span {
-                display: block;
-                height: 4px;
-                background: #F2AE66;
-                border-radius: 2px;
-                transition: 0.3s;
-            }
-            @media (max-width: 700px) {
-                nav {
-                    position: relative;
-                }
-                .nav-icon {
-                    display: flex;
-                }
-                .nav-links {
-                    display: none;
-                    flex-direction: column;
-                    position: absolute;
-                    right: 0;
-                    top: 60px;
-                    background: #E82561;
-                    width: 150px;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-                    z-index: 10;
-                }
-                #nav-toggle:checked + .nav-icon + .nav-links {
-                    display: flex;
-                }
-                .nav-links a {
-                    color: #F2AE66;
-                    padding: 1rem;
-                    border-bottom: 1px solid rgba(242,174,102,0.2);
-                    text-align: left;
-                }
-                .nav-links a:last-child {
-                    border-bottom: none;
-                }
-            }
-        </style>
+        <h1>Floor Stikkelbroeck <em>photography</em></h1>
     </header>
 
-    <div class="hero" style="display: flex; align-items: center; justify-content: center; gap: 2rem;">
-        <img src="Floor_CV_breder.jpg" alt="Florence Janine" style="width: 240px; height: 240px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 4px solid #F2AE66;">
-        <h1 style="margin: 0; color: #E82561; font-size: 2.5rem;">"Het leven is het leukst als het je verrast"</h1>
+    <div class="hero">
+        <img class="hero-photo" src="Floor_CV_breder.jpg" alt="Florence Janine">
+        <h1 class="hero-quote" lang="nl">"Het leven is het leukst als het je verrast"</h1>
     </div>
 
     <section id="portfolio">
@@ -205,7 +318,7 @@
         </div>
     </section>
 
-        <section id="about" style="text-align: left;">
+    <section id="about" style="text-align: left;">
         <h2 style="font-family: 'Libre Baskerville', serif;">About Me</h2>
         <p>From Physics to Photography! I learned photography from an unlikely source: my background in Physics & Astronomy. A few years ago I finally connected my skills of capturing collosal dim objects milions of miles away with a telescope, to capturing live's precious moments on earth. Understanding light and optics has given me a unique perspective on capturing stunning images, and gives me a deeper understanding of the world around us.</p>
     </section>
@@ -217,7 +330,30 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Flotography. All rights reserved.</p>
+        <p>&copy; 2026 Flotography. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Find the hamburger button and the links
+        const toggle = document.querySelector('.nav-toggle');
+        const links = document.getElementById('nav-links');
+
+        // Open or close the menu
+        function setMenu(isOpen) {
+            links.classList.toggle('open', isOpen);
+            toggle.setAttribute('aria-expanded', isOpen);
+            toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        }
+
+        // Tapping the hamburger flips the menu open/closed
+        toggle.addEventListener('click', () => {
+            setMenu(!links.classList.contains('open'));
+        });
+
+        // Tapping a link closes the menu again
+        links.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => setMenu(false));
+        });
+    </script>
 </body>
 </html>
