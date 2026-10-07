@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Professional photography portfolio and services">
     <title>Flotography - Capturing Your Moments</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         /* ========== BASICS ========== */
@@ -140,14 +140,42 @@
             text-align: center;
         }
 
+        .blob-frame {
+            flex-shrink: 0;
+            padding: 8px;
+            background: linear-gradient(135deg, #E82561, #F2AE66);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            box-shadow: 0 8px 24px rgba(232, 37, 97, 0.3);
+            animation: blob 8s ease-in-out infinite;
+        }
+
         .hero-photo {
+            display: block;
             width: 240px;
             height: 240px;
-            flex-shrink: 0;
             object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border: 4px solid #F2AE66;
+            border-radius: inherit;
+        }
+
+        @keyframes blob {
+            0%, 100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transform: scale(1);
+            }
+            33% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+                transform: scale(1.04);
+            }
+            66% {
+                border-radius: 50% 50% 35% 65% / 40% 70% 30% 60%;
+                transform: scale(0.97);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .blob-frame {
+                animation: none;
+            }
         }
 
         .hero-quote {
@@ -296,8 +324,11 @@
     </header>
 
     <div class="hero">
-        <img class="hero-photo" src="Floor_CV_breder.jpg" alt="Florence Janine">
-        <h1 class="hero-quote" lang="nl">"Het leven is het leukst als het je verrast"</h1>
+        <div class="blob-frame">
+            <img class="hero-photo" src="print_selfportrait.jpg" alt="Floor Stikkelbroeck">
+        </div>
+        <!-- <blockquote class="hero-quote" lang="nl">"Het leven is het leukst als het je verrast"</blockquote> -->
+        
     </div>
 
     <section id="portfolio">
@@ -320,7 +351,7 @@
 
     <section id="about" style="text-align: left;">
         <h2 style="font-family: 'Libre Baskerville', serif;">About Me</h2>
-        <p>From Physics to Photography! I learned photography from an unlikely source: my background in Physics & Astronomy. A few years ago I finally connected my skills of capturing collosal dim objects milions of miles away with a telescope, to capturing live's precious moments on earth. Understanding light and optics has given me a unique perspective on capturing stunning images, and gives me a deeper understanding of the world around us.</p>
+        <p>From Physics to Photography! I learned photography from an unlikely source: my background in Physics & Astronomy. A few years ago I finally connected my skills of capturing colossal dim objects millions of miles away with a telescope, to capturing life's precious moments on earth. Understanding light and optics has given me a unique perspective on capturing stunning images, and gives me a deeper understanding of the world around us.</p>
     </section>
 
     <section id="contact">
