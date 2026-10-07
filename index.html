@@ -7,6 +7,7 @@
     <title>Flotography - Capturing Your Moments</title>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
     <style>
         /* ========== BASICS ========== */
 
@@ -133,7 +134,7 @@
         .hero {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
             gap: 2rem;
             min-height: 40vh;
             padding: 2rem;
@@ -151,7 +152,7 @@
 
         .hero-photo {
             display: block;
-            width: 240px;
+            width: 400px;
             height: 240px;
             object-fit: cover;
             border-radius: inherit;
@@ -173,7 +174,8 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .blob-frame {
+            .blob-frame,
+            .banner-blob {
                 animation: none;
             }
         }
@@ -188,8 +190,8 @@
         /* ========== SECTIONS & GALLERY ========== */
 
         section {
-            padding: 4rem 2rem;
-            text-align: center;
+            padding: 0.5rem 0.5rem;
+            text-align: left;
         }
 
         .gallery {
@@ -236,6 +238,109 @@
         footer p {
             margin: 0;
         }
+
+            /* ========== BLOB BANNERS (section headings) ========== */
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+                /* Color schemes, taken from the header gradient */
+        .banner-pink {
+            --blob-color: #E82561;
+            --text-inside: #E8E7AB;
+            --text-faint: rgba(232, 37, 97, 0.18);
+        }
+
+        .banner-orange {
+            --blob-color: #F2AE66;
+            --text-inside: #C30E59;
+            --text-faint: rgba(242, 174, 102, 0.35);
+        }
+
+        .banner-berry {
+            --blob-color: #C30E59;
+            --text-inside: #F2AE66;
+            --text-faint: rgba(195, 14, 89, 0.15);
+        }
+
+        .blob-banner {
+            position: relative;
+            overflow: hidden;
+            height: 3.3em;
+            margin: 0 0 2rem;
+            font-family: 'Shrikhand', cursive;
+            font-weight: 400;
+            font-size: clamp(2.2rem, 7vw, 4.5rem);
+            line-height: 1.1;
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            white-space: nowrap;
+            text-align: left;
+            color: var(--text-faint);
+        }
+
+        .banner-blob .banner-text {
+            left: calc(var(--x) * -1);
+            top: calc(var(--y) * -1);
+            color: var(--text-inside);
+        }
+
+        .banner-text span {
+            display: block;
+        }
+
+        /* Shift the middle row so the words don't stack exactly */
+        .banner-text span:nth-child(2) {
+            margin-left: -1.5em;
+        }
+
+        /* The blob "windows" */
+        .banner-blob {
+            position: absolute;
+            left: var(--x);
+            top: var(--y);
+            width: var(--w);
+            height: var(--h);
+            overflow: hidden;
+            background: var(--blob-color);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blob-shape 9s ease-in-out infinite;
+        }
+
+        /* Where each blob sits, and how big it is */
+        .blob-1 { --x: 0.5em; --y: 0.3em; --w: 5em; --h: 2.7em; }
+        .blob-2 { --x: 8em;   --y: 0.9em; --w: 3em; --h: 2em; animation-delay: -4s; }
+        /* About: one big blob and a small one peeking in from the left */
+        .blob-3 { --x: 3em;   --y: 0.1em; --w: 7em;   --h: 3em;   animation: blob-wobble 11s ease-in-out infinite; }
+        .blob-4 { --x: -0.5em; --y: 1.6em; --w: 2.2em; --h: 1.6em; animation-delay: -2s; }
+
+        /* Contact: three small bubbles */
+        .blob-5 { --x: 1em;   --y: 1em;   --w: 2.5em; --h: 1.8em; animation: blob-wobble 7s ease-in-out infinite; }
+        .blob-6 { --x: 4.2em; --y: 0.2em; --w: 3em;   --h: 2.2em; animation-delay: -3s; }
+        .blob-7 { --x: 7.8em; --y: 1.2em; --w: 2.6em; --h: 1.9em; animation: blob-wobble 8s ease-in-out infinite -5s; }
+
+        @keyframes blob-wobble {
+            0%, 100% { border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%; }
+            25%      { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
+            50%      { border-radius: 35% 65% 30% 70% / 50% 40% 60% 50%; }
+            75%      { border-radius: 60% 40% 70% 30% / 40% 70% 30% 60%; }
+        }
+
+        @keyframes blob-shape {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            33%      { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            66%      { border-radius: 50% 50% 35% 65% / 40% 70% 30% 60%; }
+        } 
 
         /* ========== PHONES (screens 700px wide or smaller) ========== */
 
@@ -286,6 +391,7 @@
             /* Stack the photo above the quote */
             .hero {
                 flex-direction: column;
+                justify-content: center;
                 gap: 1.5rem;
                 min-height: 0;
                 padding: 0 1.25rem 2rem;
@@ -332,7 +438,12 @@
     </div>
 
     <section id="portfolio">
-        <h2>Portfolio</h2>
+        <h2 class="blob-banner banner-pink" data-text="portfolio">
+            <span class="visually-hidden">Portfolio</span>
+            <span class="banner-text" aria-hidden="true"></span>
+            <span class="banner-blob blob-1" aria-hidden="true"><span class="banner-text"></span></span>
+            <span class="banner-blob blob-2" aria-hidden="true"><span class="banner-text"></span></span>
+        </h2>
         <div class="gallery">
             <figure>
                 <a href="style1.html"><img src="flotoshoot_large_roosopnieuw.jpg" alt="Portrait Photography"></a>
@@ -350,12 +461,23 @@
     </section>
 
     <section id="about" style="text-align: left;">
-        <h2 style="font-family: 'Libre Baskerville', serif;">About Me</h2>
+        <h2 class="blob-banner banner-orange" data-text="about me">
+            <span class="visually-hidden">About me</span>
+            <span class="banner-text" aria-hidden="true"></span>
+            <span class="banner-blob blob-3" aria-hidden="true"><span class="banner-text"></span></span>
+            <span class="banner-blob blob-4" aria-hidden="true"><span class="banner-text"></span></span>
+        </h2>
         <p>From Physics to Photography! I learned photography from an unlikely source: my background in Physics & Astronomy. A few years ago I finally connected my skills of capturing colossal dim objects millions of miles away with a telescope, to capturing life's precious moments on earth. Understanding light and optics has given me a unique perspective on capturing stunning images, and gives me a deeper understanding of the world around us.</p>
     </section>
 
     <section id="contact">
-        <h2>Contact Me</h2>
+        <h2 class="blob-banner banner-berry" data-text="contact">
+            <span class="visually-hidden">Contact</span>
+            <span class="banner-text" aria-hidden="true"></span>
+            <span class="banner-blob blob-5" aria-hidden="true"><span class="banner-text"></span></span>
+            <span class="banner-blob blob-6" aria-hidden="true"><span class="banner-text"></span></span>
+            <span class="banner-blob blob-7" aria-hidden="true"><span class="banner-text"></span></span>
+        </h2>
         <p>Email: fj.stik@hotmail.com</p>
         <p>Phone: 123-456-7890</p>
     </section>
@@ -384,6 +506,14 @@
         // Tapping a link closes the menu again
         links.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => setMenu(false));
+        });
+
+                    // Fill each blob banner with its repeated text
+        document.querySelectorAll('.blob-banner').forEach(banner => {
+            const repeated = (banner.dataset.text + ' ').repeat(10);
+            banner.querySelectorAll('.banner-text').forEach(layer => {
+                layer.innerHTML = `<span>${repeated}</span>`.repeat(3);
+            });
         });
     </script>
 </body>
